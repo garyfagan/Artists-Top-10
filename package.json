@@ -1,5 +1,5 @@
 {
-  "name": "spotify-track-popularity",
+  "name": "spotify-top-ten",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,16 +8,26 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "dependencies": {
-    "@next/font": "13.1.6",
+  "devDependencies": {
     "@types/node": "18.14.0",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
     "eslint": "8.34.0",
     "eslint-config-next": "13.1.6",
-    "next": "13.1.6",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
     "typescript": "4.9.5"
+  },
+  "dependencies": {
+    "@emotion/cache": "^11.10.5",
+    "@emotion/react": "^11.10.6",
+    "@emotion/server": "^11.10.0",
+    "@emotion/styled": "^11.10.6",
+    "@mui/icons-material": "^5.11.11",
+    "@mui/material": "^5.11.10",
+    "@next/font": "13.1.6",
+    "next": "13.1.6",
+    "next-auth": "^4.20.1",
+    "react": "18.2.0",
+    "react-audio-player": "^0.17.0",
+    "react-dom": "18.2.0"
   }
 }
