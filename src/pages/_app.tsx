@@ -5,7 +5,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import Container from '@mui/material/Container';
 import Head from 'next/head';
-import { SessionProvider } from 'next-auth/react'
 
 import theme from '../theme';
 import createEmotionCache from '../createEmotionCache';
@@ -25,16 +24,14 @@ export default function MyApp(props: MyAppProps) {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <SessionProvider session={session}>
-        <CacheProvider value={emotionCache}>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Container maxWidth="lg">
-              <Component {...pageProps} />
-            </Container>
-          </ThemeProvider>
-        </CacheProvider>
-      </SessionProvider>
+      <CacheProvider value={emotionCache}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Container maxWidth="lg">
+            <Component {...pageProps} />
+          </Container>
+        </ThemeProvider>
+      </CacheProvider>
     </>
   );
 }

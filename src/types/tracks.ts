@@ -20,12 +20,10 @@ type Track = {
   album: Album;
 }
 
-export type Results = {
-  results: {
-    tracks?: Track[],
-    error?: {
-      stats: number,
-      message: string,
-    }
+export type TrackResults = {
+  tracks?: Track[],
+  error?: {
+    stats: number,
+    message: string,
   }
 }
