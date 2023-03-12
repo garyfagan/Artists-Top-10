@@ -1,10 +1,8 @@
-import { MySession } from '@/types/session';
-
-const CustomFetch = async (path: string, session: MySession | null) => {
+const CustomFetch = async (path: string, accessToken: string) => {
   const SPOTIFY_API = 'https://api.spotify.com/v1/';
   return await fetch(`${SPOTIFY_API}${path}`, {
     headers: {
-      Authorization: `Bearer ${session?.user?.accessToken}`,
+      Authorization: `Bearer ${accessToken}`,
     },
   }).then((res) => res.json());
 };

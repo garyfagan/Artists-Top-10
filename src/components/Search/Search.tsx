@@ -8,14 +8,16 @@ const Search: React.FC = () => {
   const router = useRouter();
   const [artist, setArtist] = useState('');
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     router.push(`/search?artist=${artist}`);
+    setArtist('');
   };
 
   return (
     <Box component="form" sx={{ width: '320px' }} onSubmit={(e) => handleSubmit(e)}>
       <InputBase
+        value={artist}
         fullWidth
         onChange={(event) => setArtist(event.target.value)}
         placeholder="Who do you want to listen to?"

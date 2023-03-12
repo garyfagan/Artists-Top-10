@@ -15,12 +15,10 @@ type Artists = {
   items: Item[];
 }
 
-export type Results = {
-  results: {
-    artists?: Artists,
-    error?: {
-      stats: number,
-      message: string,
-    }
+export type ArtistResults = {
+  artists?: Artists,
+  error?: {
+    stats: number,
+    message: string,
   }
 }
