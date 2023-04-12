@@ -6,12 +6,10 @@ import { Alert, Button, Chip, Grid, Stack, Typography } from '@mui/material';
 import AppBar from '@/components/AppBar/AppBar';
 import Card from '@/components/Card/Card';
 import useFetchArtists from '@/hooks/useFetchArtists';
-import useSetToken from '@/hooks/useSetToken';
 import useGetToken from '@/hooks/useGetToken';
 
 const Search = () => {
   const router = useRouter();
-  useSetToken();
   const token = useGetToken();
   const { data, error } = useFetchArtists(router?.query?.artist, token);
 
