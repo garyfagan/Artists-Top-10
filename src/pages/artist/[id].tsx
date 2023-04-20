@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import { Alert, Avatar, IconButton, List, ListItem, ListItemAvatar, ListItemText } from '@mui/material';
+import { Alert, Avatar, IconButton, List, ListItem, ListItemAvatar, ListItemText, ListItemButton } from '@mui/material';
 import ReactAudioPlayer from 'react-audio-player';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import StopIcon from '@mui/icons-material/Stop';
@@ -37,15 +37,16 @@ const Tracks = () => {
               key={track.id}
               secondaryAction={
                 <IconButton edge="end" aria-label="delete" onClick={() => activeTrack !== track.preview_url ? setActiveTrack(track.preview_url) : setActiveTrack('')}>
-
                   {activeTrack !== track.preview_url ? <PlayArrowIcon /> : <StopIcon />}
                 </IconButton>
               }
             >
+              <ListItemButton onClick={() => activeTrack !== track.preview_url ? setActiveTrack(track.preview_url) : setActiveTrack('')}>
               <ListItemAvatar>
                 <Avatar src={track?.album?.images[1].url} variant="square" />
               </ListItemAvatar>
               <ListItemText primary={track.name} />
+              </ListItemButton>
             </ListItem>
           ))}
         </List>
