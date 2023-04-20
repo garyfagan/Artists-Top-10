@@ -42,10 +42,12 @@ const Search = () => {
                 </IconButton>
               }
             >
-              <ListItemAvatar>
-                <Avatar src={artist?.images[1]?.url} variant="square" />
-              </ListItemAvatar>
-              <ListItemText primary={artist.name} />
+              <ListItemButton onClick={() => selectTopTracks(artist.id)}>
+                <ListItemAvatar>
+                  <Avatar src={artist?.images[1]?.url} variant="square" />
+                </ListItemAvatar>
+                <ListItemText primary={artist.name} />
+              </ListItemButton>
             </ListItem>
           ))}
         </List>
