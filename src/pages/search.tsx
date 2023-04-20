@@ -1,10 +1,10 @@
 import React from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { Alert, Button, Chip, Grid, Stack, Typography } from '@mui/material';
+import { Alert, Avatar, Grid, IconButton, List, ListItem, ListItemAvatar, ListItemButton, ListItemText, Stack, Typography } from '@mui/material';
+import ArrowRightIcon from '@mui/icons-material/ArrowForwardIos';
 
 import AppBar from '@/components/AppBar/AppBar';
-import Card from '@/components/Card/Card';
 import useFetchArtists from '@/hooks/useFetchArtists';
 import useGetToken from '@/hooks/useGetToken';
 
@@ -32,21 +32,23 @@ const Search = () => {
         </Grid>
       )}
       {data && data.items.length > 1 && (
-        <Grid container spacing={3}>
+        <List dense={true}>
           {data?.items?.map((artist) => (
-            <Grid key={artist.id} item xs={12} sm={6}>
-              <Card
-                actions={<Button size="small" onClick={() => selectTopTracks(artist.id)}>See top 10</Button>}
-                image={artist?.images[1]?.url}
-                title={artist.name}
-              >
-                <Stack direction="row" spacing={1}>
-                  {artist.genres.slice(0, 3).map((genre) => <Chip key={genre} label={genre} />)}
-                </Stack>
-              </Card>
-            </Grid>
+            <ListItem
+              key={artist.id}
+              secondaryAction={
+                <IconButton edge="end" aria-label="delete" onClick={() => selectTopTracks(artist.id)}>
+                  <ArrowRightIcon />
+                </IconButton>
+              }
+            >
+              <ListItemAvatar>
+                <Avatar src={artist?.images[1]?.url} variant="square" />
+              </ListItemAvatar>
+              <ListItemText primary={artist.name} />
+            </ListItem>
           ))}
-        </Grid>
+        </List>
       )}
     </>
   )

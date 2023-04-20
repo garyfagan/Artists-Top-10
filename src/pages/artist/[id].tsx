@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import { Alert, Button, Grid } from '@mui/material';
+import { Alert, Avatar, IconButton, List, ListItem, ListItemAvatar, ListItemText } from '@mui/material';
 import ReactAudioPlayer from 'react-audio-player';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import StopIcon from '@mui/icons-material/Stop';
 
 import AppBar from '@/components/AppBar/AppBar';
-import Card from '@/components/Card/Card';
 import useGetToken from '@/hooks/useGetToken';
 import useFetchTracks from '@/hooks/useFetchTracks';
 
@@ -14,7 +15,7 @@ const Tracks = () => {
   const [activeTrack, setActiveTrack] = useState<string | null>(null);
   const token = useGetToken();
   const { data, error } = useFetchTracks(router.query.id, token);
-  
+
   return (
     <>
       <Head>
@@ -30,28 +31,24 @@ const Tracks = () => {
         />
       )}
       {data && (
-        <Grid container spacing={3}>
+        <List dense={true}>
           {data.map((track) => (
-            <Grid key={track.id} item xs={12} sm={6}>
-              <Card
-                description={track.artists[0].name}
-                actions={(
-                  <>
-                    <Button
-                      size="small"
-                      onClick={() => activeTrack !== track.preview_url ? setActiveTrack(track.preview_url) : setActiveTrack('')}
-                    >
-                      {activeTrack !== track.preview_url ? 'Play' : 'Stop'}
-                    </Button>
-                  </>
-                )}
-                image={track?.album?.images[1].url}
-                title={track.name}
-              >
-              </Card>
-            </Grid>
+            <ListItem
+              key={track.id}
+              secondaryAction={
+                <IconButton edge="end" aria-label="delete" onClick={() => activeTrack !== track.preview_url ? setActiveTrack(track.preview_url) : setActiveTrack('')}>
+
+                  {activeTrack !== track.preview_url ? <PlayArrowIcon /> : <StopIcon />}
+                </IconButton>
+              }
+            >
+              <ListItemAvatar>
+                <Avatar src={track?.album?.images[1].url} variant="square" />
+              </ListItemAvatar>
+              <ListItemText primary={track.name} />
+            </ListItem>
           ))}
-        </Grid>
+        </List>
       )}
     </>
   )
