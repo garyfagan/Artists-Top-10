@@ -7,7 +7,6 @@ type Image = {
 type Item = {
   id: string;
   name: string;
-  genres: string[];
   images: Image[];
 }
 
