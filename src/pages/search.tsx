@@ -36,13 +36,14 @@ const Search = () => {
           {data?.items?.map((artist) => (
             <ListItem
               key={artist.id}
+              disableGutters
               secondaryAction={
-                <IconButton edge="end" aria-label="delete" onClick={() => selectTopTracks(artist.id)}>
+                <IconButton disableRipple edge="end" aria-label="delete" onClick={() => selectTopTracks(artist.id)}>
                   <ArrowRightIcon />
                 </IconButton>
               }
             >
-              <ListItemButton onClick={() => selectTopTracks(artist.id)}>
+              <ListItemButton disableRipple onClick={() => selectTopTracks(artist.id)}>
                 <ListItemAvatar>
                   <Avatar src={artist?.images[1]?.url} variant="square" />
                 </ListItemAvatar>

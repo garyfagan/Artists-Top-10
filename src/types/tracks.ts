@@ -5,7 +5,11 @@ type Image = {
 }
 
 type Album = {
+  external_urls: {
+    spotify: string;
+  };
   images: Image[];
+  name: string;
 }
 
 type Artist = {

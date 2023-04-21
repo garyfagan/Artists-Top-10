@@ -5,6 +5,7 @@ import { Alert, Avatar, IconButton, List, ListItem, ListItemAvatar, ListItemText
 import ReactAudioPlayer from 'react-audio-player';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import StopIcon from '@mui/icons-material/Stop';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 
 import AppBar from '@/components/AppBar/AppBar';
 import useGetToken from '@/hooks/useGetToken';
@@ -35,17 +36,23 @@ const Tracks = () => {
           {data.map((track) => (
             <ListItem
               key={track.id}
+              disableGutters
               secondaryAction={
-                <IconButton edge="end" aria-label="delete" onClick={() => activeTrack !== track.preview_url ? setActiveTrack(track.preview_url) : setActiveTrack('')}>
-                  {activeTrack !== track.preview_url ? <PlayArrowIcon /> : <StopIcon />}
-                </IconButton>
+                <>
+                  <IconButton disableRipple aria-label="delete" onClick={() => activeTrack !== track.preview_url ? setActiveTrack(track.preview_url) : setActiveTrack('')}>
+                    {activeTrack !== track.preview_url ? <PlayArrowIcon /> : <StopIcon />}
+                  </IconButton>
+                  <IconButton disableRipple edge="end" aria-label="open" target="_blank" href={track?.album?.external_urls.spotify}>
+                    <OpenInNewIcon />
+                  </IconButton>
+                </>
               }
             >
-              <ListItemButton onClick={() => activeTrack !== track.preview_url ? setActiveTrack(track.preview_url) : setActiveTrack('')}>
-              <ListItemAvatar>
-                <Avatar src={track?.album?.images[1].url} variant="square" />
-              </ListItemAvatar>
-              <ListItemText primary={track.name} />
+              <ListItemButton disableRipple  onClick={() => activeTrack !== track.preview_url ? setActiveTrack(track.preview_url) : setActiveTrack('')}>
+                <ListItemAvatar>
+                  <Avatar src={track?.album?.images[1].url} variant="square" />
+                </ListItemAvatar>
+                <ListItemText primary={track.name} secondary={track.album.name} />
               </ListItemButton>
             </ListItem>
           ))}
