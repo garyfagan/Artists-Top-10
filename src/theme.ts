@@ -35,44 +35,6 @@ const theme = createTheme({
         },
       },
     },
-    MuiInputBase: {
-      styleOverrides: {
-        root: {
-          backgroundColor: '#FFF',
-          borderRadius: 25,
-          color: '#000',
-          padding: '10px 15px',
-        },
-      },
-    },
-    MuiChip: {
-      styleOverrides: {
-        filled: {
-          backgroundColor: '#000',
-          color: '#9E9E9E',
-        },
-      },
-    },
-    MuiButton: {
-      styleOverrides: {
-        containedPrimary: {
-          backgroundColor: '#1ED760',
-          borderRadius: '500px',
-          color: '#000',
-          '&:hover': {
-            backgroundColor: '#1FDF64',
-          }
-        },
-      },
-    },
-    MuiCard: {
-      styleOverrides: {
-        root: {
-          backgroundColor: '#181818',
-          // color: '#FFF',
-        },
-      },
-    },
   },
 });
 

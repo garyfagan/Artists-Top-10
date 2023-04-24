@@ -12,7 +12,7 @@ type Album = {
   name: string;
 }
 
-type Artist = {
+export type Artist = {
   name: string;
 }
 

@@ -7,10 +7,14 @@ const LogoutButton: React.FC = () => {
   const router = useRouter();
 
   return (
-    <IconButton aria-label="Logout" onClick={() => {
-      window.localStorage.removeItem("token");
-      router.push('/');
-    }}>
+    <IconButton
+      aria-label="Logout"
+      edge="end"
+      onClick={() => {
+        window.localStorage.removeItem("token");
+        router.push('/');
+      }}
+    >
       <LogoutIcon />
     </IconButton>
   );
