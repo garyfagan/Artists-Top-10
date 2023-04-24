@@ -1,34 +1,41 @@
 import React from 'react';
-import { Grid, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
+import MuiAppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
 
+
+import Search from '@/components/Search/Search';
 import LoginButton from '@/components/LoginButton/LoginButton';
 import LogoutButton from '@/components/LogoutButton/LogoutButton';
-import Search from '@/components/Search/Search';
 import useGetToken from '@/hooks/useGetToken';
 
 const AppBar: React.FC = () => {
   const token = useGetToken();
 
   return (
-    <Grid container alignItems={'center'} justifyContent={'space-between'} pb={5} my={5} sx={{ borderBottom: '1px solid #9E9E9E' }}>
-      <Grid item>
-        <Typography variant="h4" sx={{ color: '#FFF' }}>Spotify Top 10</Typography>
-      </Grid>
-      <Grid item>
-        {token && (
-          <Grid container gap={'15px'} alignItems={'center'} justifyContent={'space-between'}>
-            <Grid item>
+    <Box sx={{ flexGrow: 1 }}>
+      <MuiAppBar position="static" sx={{ backgroundColor: 'inherit' }}>
+        <Toolbar disableGutters>
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ flexGrow: 1, display: { xs: 'block' } }}
+          >
+            Artist Top 10
+          </Typography>
+          {token && (
+            <>
               <Search />
-            </Grid>
-            <Grid item>
               <LogoutButton />
-            </Grid>
-          </Grid>
-        )}
-        {!token && <LoginButton />}
-      </Grid>
-    </Grid>
-  )
+            </>
+          )}
+          {!token && <LoginButton />}
+        </Toolbar>
+      </MuiAppBar>
+    </Box>
+  );
 }
 
 export default AppBar;

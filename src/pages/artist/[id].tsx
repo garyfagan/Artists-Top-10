@@ -11,11 +11,15 @@ import AppBar from '@/components/AppBar/AppBar';
 import useGetToken from '@/hooks/useGetToken';
 import useFetchTracks from '@/hooks/useFetchTracks';
 
+import { Artist } from '@/types/tracks';
+
 const Tracks = () => {
   const router = useRouter();
   const [activeTrack, setActiveTrack] = useState<string | null>(null);
   const token = useGetToken();
   const { data, error } = useFetchTracks(router.query.id, token);
+
+  const listArtists = (artists: Artist[]) => artists.map((artist) => artist.name).join(", ");
 
   return (
     <>
@@ -39,7 +43,7 @@ const Tracks = () => {
               disableGutters
               secondaryAction={
                 <>
-                  <IconButton disableRipple aria-label="delete" onClick={() => activeTrack !== track.preview_url ? setActiveTrack(track.preview_url) : setActiveTrack('')}>
+                  <IconButton disableRipple onClick={() => activeTrack !== track.preview_url ? setActiveTrack(track.preview_url) : setActiveTrack('')}>
                     {activeTrack !== track.preview_url ? <PlayArrowIcon /> : <StopIcon />}
                   </IconButton>
                   <IconButton disableRipple edge="end" aria-label="open" target="_blank" href={track?.album?.external_urls.spotify}>
@@ -48,11 +52,11 @@ const Tracks = () => {
                 </>
               }
             >
-              <ListItemButton disableRipple  onClick={() => activeTrack !== track.preview_url ? setActiveTrack(track.preview_url) : setActiveTrack('')}>
+              <ListItemButton disableGutters disableRipple onClick={() => activeTrack !== track.preview_url ? setActiveTrack(track.preview_url) : setActiveTrack('')}>
                 <ListItemAvatar>
                   <Avatar src={track?.album?.images[1].url} variant="square" />
                 </ListItemAvatar>
-                <ListItemText primary={track.name} secondary={track.album.name} />
+                <ListItemText primary={track.name} secondary={listArtists(track.artists)} />
               </ListItemButton>
             </ListItem>
           ))}

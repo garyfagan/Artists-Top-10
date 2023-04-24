@@ -38,12 +38,12 @@ const Search = () => {
               key={artist.id}
               disableGutters
               secondaryAction={
-                <IconButton disableRipple edge="end" aria-label="delete" onClick={() => selectTopTracks(artist.id)}>
+                <IconButton disableRipple edge="end" onClick={() => selectTopTracks(artist.id)}>
                   <ArrowRightIcon />
                 </IconButton>
               }
             >
-              <ListItemButton disableRipple onClick={() => selectTopTracks(artist.id)}>
+              <ListItemButton disableGutters disableRipple onClick={() => selectTopTracks(artist.id)}>
                 <ListItemAvatar>
                   <Avatar src={artist?.images[1]?.url} variant="square" />
                 </ListItemAvatar>
