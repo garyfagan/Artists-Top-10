@@ -14,7 +14,7 @@ const Search = () => {
       </Head>
       <Typography align="center" mt={2}>Redirecting you...</Typography>
     </>
-  )
-}
+  );
+};
 
 export default Search;

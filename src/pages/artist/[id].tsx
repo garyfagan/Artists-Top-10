@@ -1,69 +1,42 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import { Alert, Avatar, IconButton, List, ListItem, ListItemAvatar, ListItemText, ListItemButton } from '@mui/material';
-import ReactAudioPlayer from 'react-audio-player';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import StopIcon from '@mui/icons-material/Stop';
-import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import { Alert, Grid, Typography, colors } from '@mui/material';
 
-import AppBar from '@/components/AppBar/AppBar';
+import Card from '@/components/Card/Card';
 import useGetToken from '@/hooks/useGetToken';
 import useFetchTracks from '@/hooks/useFetchTracks';
-
-import { Artist } from '@/types/tracks';
+import { listArtists } from '@/helpers/ListArtists';
 
 const Tracks = () => {
   const router = useRouter();
-  const [activeTrack, setActiveTrack] = useState<string | null>(null);
   const token = useGetToken();
   const { data, error } = useFetchTracks(router.query.id, token);
-
-  const listArtists = (artists: Artist[]) => artists.map((artist) => artist.name).join(", ");
 
   return (
     <>
       <Head>
         <title>Spotify Track Popularity</title>
       </Head>
-      <AppBar />
       {error && <Alert severity="error">{error?.message}</Alert>}
-      {data && activeTrack && (
-        <ReactAudioPlayer
-          src={activeTrack}
-          autoPlay
-          onEnded={() => setActiveTrack('')}
-        />
+      {data && data?.length < 1 && (
+        <Alert severity="info">No tracks found.</Alert>
       )}
-      {data && (
-        <List dense={true}>
+      {data && data?.length > 0 && (
+        <Grid container spacing={5}>
           {data.map((track) => (
-            <ListItem
-              key={track.id}
-              disableGutters
-              secondaryAction={
-                <>
-                  <IconButton disableRipple onClick={() => activeTrack !== track.preview_url ? setActiveTrack(track.preview_url) : setActiveTrack('')}>
-                    {activeTrack !== track.preview_url ? <PlayArrowIcon /> : <StopIcon />}
-                  </IconButton>
-                  <IconButton disableRipple edge="end" aria-label="open" target="_blank" href={track?.album?.external_urls.spotify}>
-                    <OpenInNewIcon />
-                  </IconButton>
-                </>
-              }
-            >
-              <ListItemButton disableGutters disableRipple onClick={() => activeTrack !== track.preview_url ? setActiveTrack(track.preview_url) : setActiveTrack('')}>
-                <ListItemAvatar>
-                  <Avatar src={track?.album?.images[1].url} variant="square" />
-                </ListItemAvatar>
-                <ListItemText primary={track.name} secondary={listArtists(track.artists)} />
-              </ListItemButton>
-            </ListItem>
+            <Grid key={track.id} item xs={12} sm={6} md={4} lg={3}>
+              <Card href={`/track/${track?.id}`} image={{ alt: `Artwork for ${track?.album?.name}`, path: track?.album?.images[1].url }}>
+                <Typography color={colors.common.white} variant="body1">{track.name}</Typography>
+                <Typography color={colors.grey[500]} variant="body1">{listArtists(track.artists)}</Typography>
+                <Typography color={colors.grey[500]} variant="body1">{track?.album?.name}</Typography>
+              </Card>
+            </Grid>
           ))}
-        </List>
+        </Grid>
       )}
     </>
-  )
-}
+  );
+};
 
 export default Tracks;

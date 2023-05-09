@@ -23,7 +23,7 @@ const useFetchArtists = (query: string | string[] | undefined, token: string | n
     error: artistResults?.error,
     data: artistResults?.artists,
     isLoading,
-  }
-}
+  };
+};
 
 export default useFetchArtists;

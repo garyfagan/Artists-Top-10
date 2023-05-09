@@ -1,10 +1,9 @@
 import React from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { Alert, Avatar, Grid, IconButton, List, ListItem, ListItemAvatar, ListItemButton, ListItemText, Stack, Typography } from '@mui/material';
-import ArrowRightIcon from '@mui/icons-material/ArrowForwardIos';
+import { Alert, Grid, Typography, colors } from '@mui/material';
 
-import AppBar from '@/components/AppBar/AppBar';
+import Card from '@/components/Card/Card';
 import useFetchArtists from '@/hooks/useFetchArtists';
 import useGetToken from '@/hooks/useGetToken';
 
@@ -13,48 +12,29 @@ const Search = () => {
   const token = useGetToken();
   const { data, error } = useFetchArtists(router?.query?.artist, token);
 
-  const selectTopTracks = (id: string) => {
-    router.push(`/artist/${id}`);
-  };
-
   return (
     <>
       <Head>
         <title>Spotify Track Popularity</title>
       </Head>
-      <AppBar />
       {error && <Alert severity="error">{error.message}</Alert>}
       {data && data.items.length < 1 && (
-        <Grid container direction="column" alignItems="center" spacing={2}>
-          <Grid item>
-            <Typography color="text.secondary">No results found</Typography>
-          </Grid>
-        </Grid>
+        <Alert severity="info">No tracks found.</Alert>
       )}
       {data && data.items.length > 1 && (
-        <List dense={true}>
+        <Grid container spacing={5}>
           {data?.items?.map((artist) => (
-            <ListItem
-              key={artist.id}
-              disableGutters
-              secondaryAction={
-                <IconButton disableRipple edge="end" onClick={() => selectTopTracks(artist.id)}>
-                  <ArrowRightIcon />
-                </IconButton>
-              }
-            >
-              <ListItemButton disableGutters disableRipple onClick={() => selectTopTracks(artist.id)}>
-                <ListItemAvatar>
-                  <Avatar src={artist?.images[1]?.url} variant="square" />
-                </ListItemAvatar>
-                <ListItemText primary={artist.name} />
-              </ListItemButton>
-            </ListItem>
+            <Grid key={artist.id} item xs={12} sm={6} md={4} lg={3}>
+              <Card href={`/artist/${artist.id}`} image={{ alt: `Artwork for ${artist.name}`, path: artist?.images[1]?.url }}>
+                <Typography color={colors.common.white} variant="body1">{artist.name}</Typography>
+                <Typography color={colors.grey[500]} variant="body1">Artist</Typography>
+              </Card>
+            </Grid>
           ))}
-        </List>
+        </Grid>
       )}
     </>
-  )
-}
+  );
+};
 
 export default Search;

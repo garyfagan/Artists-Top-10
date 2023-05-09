@@ -8,6 +8,7 @@ import Head from 'next/head';
 
 import theme from '../theme';
 import createEmotionCache from '../createEmotionCache';
+import AppBar from '@/components/AppBar/AppBar';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -28,6 +29,7 @@ export default function MyApp(props: MyAppProps) {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Container maxWidth="lg">
+            <AppBar />
             <Component {...pageProps} />
           </Container>
         </ThemeProvider>

@@ -23,7 +23,7 @@ const useFetchTracks = (artist: string | string[] | undefined, token: string | n
     error: trackResults?.error,
     data: trackResults?.tracks,
     isLoading,
-  }
-}
+  };
+};
 
 export default useFetchTracks;

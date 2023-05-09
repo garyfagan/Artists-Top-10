@@ -4,6 +4,16 @@ const nextConfig = {
   env: {
     SPOTIFY_REDIRECT_URI: process.env.SPOTIFY_REDIRECT_URI,
   },
-}
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'i.scdn.co',
+        port: '',
+        pathname: '/image/**',
+      },
+    ],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

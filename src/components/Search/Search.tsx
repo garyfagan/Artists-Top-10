@@ -61,7 +61,7 @@ const Search: React.FC = () => {
         value={artist}
       />
     </SearchContainer>
-  )
+  );
 };
 
 export default Search;
