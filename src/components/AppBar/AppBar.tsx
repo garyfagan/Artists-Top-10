@@ -17,7 +17,7 @@ const AppBar: React.FC = () => {
           <MuiAppBar position="static" sx={{ backgroundColor: 'inherit' }}>
             <Toolbar disableGutters>
               <Box sx={{ flexGrow: 1, display: { xs: 'block' } }}>
-                <img src='/spotify-logo.png' alt='logo' width="140px" />
+                <img src='https://garyfagan.github.io/Spotify-Top-Ten/spotify-logo.png' alt='logo' width="140px" />
               </Box>
               <Search />
               <LogoutButton />
