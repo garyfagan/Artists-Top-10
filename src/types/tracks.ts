@@ -1,10 +1,12 @@
+import { RequestError } from "./error";
+
 type Image = {
   height: number;
   url: string;
   width: number;
 }
 
-type Album = {
+export type Album = {
   external_urls: {
     spotify: string;
   };
@@ -26,8 +28,5 @@ type Track = {
 
 export type TrackResults = {
   tracks?: Track[],
-  error?: {
-    stats: number,
-    message: string,
-  }
+  error?: RequestError;
 }

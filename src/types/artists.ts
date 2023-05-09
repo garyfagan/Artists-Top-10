@@ -1,3 +1,5 @@
+import { RequestError } from "./error";
+
 type Image = {
   height: number;
   url: string;
@@ -16,8 +18,5 @@ type Artists = {
 
 export type ArtistResults = {
   artists?: Artists,
-  error?: {
-    stats: number,
-    message: string,
-  }
+  error?: RequestError;
 }
