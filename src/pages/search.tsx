@@ -22,9 +22,9 @@ const Search = () => {
         <Alert severity="info">No tracks found.</Alert>
       )}
       {data && data.items.length > 1 && (
-        <Grid container spacing={5}>
+        <Grid container>
           {data?.items?.map((artist) => (
-            <Grid key={artist.id} item xs={12} sm={6} md={4} lg={3}>
+            <Grid key={artist.id} item xs={6} md={4} lg={3}>
               <Card href={`/artist/${artist.id}`} image={{ alt: `Artwork for ${artist.name}`, path: artist?.images[1]?.url }}>
                 <Typography color={colors.common.white} variant="body1">{artist.name}</Typography>
                 <Typography color={colors.grey[500]} variant="body1">Artist</Typography>
