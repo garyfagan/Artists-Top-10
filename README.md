@@ -11,16 +11,16 @@ yarn dev
 
 ### Login Page
 
-![Login Page](https://garyfagan.github.io/Spotify-Top-Ten/spotify/screenshots/login.png)
+<img src="https://github.com/garyfagan/Spotify-Top-Ten/blob/main/public/screenshots/login.png?raw=true" alt="Login Page" width="200" />
 
 ### Search Page
 
-![Search Page](https://garyfagan.github.io/Spotify-Top-Ten/spotify/screenshots/search.png)
+<img src="https://github.com/garyfagan/Spotify-Top-Ten/blob/main/public/screenshots/search.png?raw=true" alt="Search Page" width="200" />
 
 ### Tracks Page
 
-![Tracks Page](https://garyfagan.github.io/Spotify-Top-Ten/spotify/screenshots/tracks.png)
+<img src="https://github.com/garyfagan/Spotify-Top-Ten/blob/main/public/screenshots/tracks.png?raw=true" alt="Tracks Page" width="200" />
 
 ### Track Page
 
-![Track Page](https://garyfagan.github.io/Spotify-Top-Ten/spotify/screenshots/track.png)
+<img src="https://github.com/garyfagan/Spotify-Top-Ten/blob/main/public/screenshots/track.png?raw=true" alt="Track Page" width="200" />
