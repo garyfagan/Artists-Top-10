@@ -32,7 +32,7 @@ const Tracks = () => {
         />
       )}
       {data && (
-        <Card width={320} image={{ alt: `Artwork for ${data?.album?.name}`, path: data?.album?.images[1].url }}>
+        <Card sx={{ margin: '0 auto', width: 320 }} image={{ alt: `Artwork for ${data?.album?.name}`, path: data?.album?.images[1].url }}>
           <Typography color={colors.common.white} variant="body1">{data.name}</Typography>
           <Typography color={colors.grey[500]} variant="body1">{listArtists(data.artists)}</Typography>
           <Typography color={colors.grey[500]} variant="body1">{data?.album?.name}</Typography>

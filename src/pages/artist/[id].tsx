@@ -23,9 +23,9 @@ const Tracks = () => {
         <Alert severity="info">No tracks found.</Alert>
       )}
       {data && data?.length > 0 && (
-        <Grid container spacing={5}>
+        <Grid container>
           {data.map((track) => (
-            <Grid key={track.id} item xs={12} sm={6} md={4} lg={3}>
+            <Grid key={track.id} item xs={6} md={4} lg={3}>
               <Card href={`/track/${track?.id}`} image={{ alt: `Artwork for ${track?.album?.name}`, path: track?.album?.images[1].url }}>
                 <Typography color={colors.common.white} variant="body1">{track.name}</Typography>
                 <Typography color={colors.grey[500]} variant="body1">{listArtists(track.artists)}</Typography>
