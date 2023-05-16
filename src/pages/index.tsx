@@ -21,7 +21,7 @@ const Home = () => {
         <title>Spotify Track Popularity</title>
       </Head>
       <Box sx={styles}>
-        <img src='https://garyfagan.github.io/Spotify-Top-Ten/spotify-logo.png' alt='logo' width="140px" />
+        <img src='https://garyfagan.github.io/Artists-Top-10/spotify-logo.png' alt='logo' width="140px" />
         <LoginButton />
       </Box>
     </>
