@@ -2,6 +2,8 @@ import React from 'react';
 import { Box, BoxProps, Link } from '@mui/material';
 import NextLink from 'next/link';
 
+import styles from './Card.s';
+
 type Image = {
   alt: string;
   path: string;
@@ -12,16 +14,6 @@ type CardProps = {
   href?: string;
   image: Image;
 } & BoxProps;
-
-const styles = {
-  backgroundColor: '#0B0B0B',
-  borderRadius: 2,
-  padding: 2,
-  transition: 'background-color 250ms',
-  '&:hover': {
-    backgroundColor: '#222',
-  }
-};
 
 const IMAGE_NOT_FOUND = 'https://dummyimage.com/240x240/000000/ffffff&text=Image+not+available';
 
