@@ -1,1 +1,3 @@
 process.env.SPOTIFY_REDIRECT_URI = 'SPOTIFY_REDIRECT_URI';
+
+export {};
